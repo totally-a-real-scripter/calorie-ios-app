@@ -1,4 +1,3 @@
-
 import Foundation
 import LlamaSwift
 
@@ -11,6 +10,7 @@ enum LLMEngineError: Error, LocalizedError {
     case getLogitsFailed
     case invalidToken
     case batchFull
+    case generationCancelled
 
     var errorDescription: String? {
         switch self {
@@ -30,6 +30,8 @@ enum LLMEngineError: Error, LocalizedError {
             return "Generated an invalid token."
         case .batchFull:
             return "Llama batch is full, cannot add more tokens."
+        case .generationCancelled:
+            return "AI generation was cancelled."
         }
     }
 }
@@ -39,6 +41,7 @@ class LLMEngine {
     private var context: OpaquePointer?
     private let modelPath: String
     private var n_vocab: Int32 = 0
+    private var isCancellationRequested: Bool = false
 
     init(modelPath: String) {
         self.modelPath = modelPath
@@ -54,34 +57,44 @@ class LLMEngine {
             throw LLMEngineError.modelNotFound
         }
 
+        // llama_backend_init(false) should ideally be called once globally.
+        // For simplicity here, we'll assume it's handled by LlamaSwift's internal setup
+        // or called externally if necessary.
+
         var modelParams = llama_model_default_params()
         // TODO: Configure modelParams if needed, e.g., for GPU offloading or specific memory settings.
+        // For example:
+        // modelParams.n_gpu_layers = 99 // Offload all layers to GPU if available
 
         self.model = llama_load_model_from_file(modelPath, modelParams)
         guard let loadedModel = self.model else {
-            throw LLMEngineError.modelLoadFailed("Unknown reason") // llama_load_model_from_file doesn't provide detailed error
+            throw LLMEngineError.modelLoadFailed("Unknown reason or model file corrupted.")
         }
         
         var contextParams = llama_context_default_params()
         contextParams.n_ctx = 2048 // Context window size
         contextParams.n_batch = 512 // Batch size for processing
         // TODO: Configure contextParams based on device capabilities and model requirements.
+        // For example, for a smaller device, you might reduce n_batch or n_ctx if memory is an issue.
         
-        self.context = llam-new_context_with_model(loadedModel, contextParams) // CORRECTED
+        self.context = llama_new_context_with_model(loadedModel, contextParams)
         guard let loadedContext = self.context else {
             throw LLMEngineError.contextCreateFailed
         }
         
-        self.n_vocab = llam-n_vocab(loadedModel) // CORRECTED
+        self.n_vocab = llama_n_vocab(loadedModel)
     }
 
     func generate(prompt: String, maxTokens: Int = 500) async throws -> String {
         guard let model = self.model, let context = self.context else {
-            throw LLMEngineError.modelLoadFailed("Model not loaded.")
+            throw LLMEngineError.modelLoadFailed("LLM model not loaded or context not created.")
         }
 
+        // Reset cancellation flag for new generation
+        isCancellationRequested = false
+
         // Tokenization
-        var tokens: [llama_token] = Array(repeating: 0, count: Int(llam-n_ctx(context))) // CORRECTED
+        var tokens: [llama_token] = Array(repeating: 0, count: Int(llama_n_ctx(context)))
 
         let tokenCount = llama_tokenize(
             model,
@@ -103,13 +116,12 @@ class LLMEngine {
         var n_cur = 0
 
         // Create a llama_batch
-        var batch = llama_batch_init(llam-n_ctx(context), 0, 1) // CORRECTED
+        var batch = llama_batch_init(Int32(promptTokens.count), 0, 1) // Initialize batch with prompt token count
         defer { llama_batch_free(batch) }
 
         // Add prompt tokens to batch
         for i in 0..<promptTokens.count {
-            // Manually populate the batch.token, batch.pos, batch.n_seq_id
-            if i >= Int(batch.n_batch) { // Check if batch is full (CORRECTED)
+            if i >= Int(batch.n_batch) { // Check if batch is full
                 throw LLMEngineError.batchFull
             }
             batch.token[i] = promptTokens[i]
@@ -122,7 +134,7 @@ class LLMEngine {
         }
         batch.n_tokens = Int32(promptTokens.count)
 
-        // Set logits for the last prompt token
+        // Set logits for the last prompt token to predict the next
         if batch.n_tokens > 0 {
             batch.logits[Int(batch.n_tokens) - 1] = 1
         }
@@ -136,6 +148,11 @@ class LLMEngine {
 
         // Generation loop
         for _ in 0..<maxTokens {
+            // Check for cancellation
+            if isCancellationRequested {
+                throw LLMEngineError.generationCancelled
+            }
+
             // Get logits for the last token
             guard let logits = llama_get_logits_ith(context, batch.n_tokens - 1) else {
                 throw LLMEngineError.getLogitsFailed
@@ -172,7 +189,7 @@ class LLMEngine {
             llama_batch_clear(&batch) // Clear the previous batch
             
             // Add the new token to the batch
-            if batch.n_tokens >= batch.n_batch { // Check if batch is full (CORRECTED)
+            if batch.n_tokens >= batch.n_batch { // Check if batch is full
                 throw LLMEngineError.batchFull
             }
             batch.token[0] = nextToken
@@ -193,6 +210,10 @@ class LLMEngine {
             }
         }
         return result
+    }
+
+    func cancelGeneration() {
+        isCancellationRequested = true
     }
 
     private func freeContext() {
