@@ -1,0 +1,200 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		75E9B54A2C04D6D6003788F1 /* CalorieAIAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E9B5492C04D6D6003788F1 /* CalorieAIAppApp.swift */; };
+		75E9B54C2C04D6D6003788F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E9B54B2C04D6D6003788F1 /* ContentView.swift */; };
+		75E9B54E2C04D6D6003788F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75E9B54D2C04D6D6003788F1 /* Assets.xcassets */; };
+		75E9B5522C04D6D6003788F1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75E9B5512C04D6D6003788F1 /* Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		75E9B5482C04D6D6003788F1 /* CalorieAIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalorieAIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75E9B5492C04D6D6003788F1 /* CalorieAIAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieAIAppApp.swift; sourceTree = "<group>"; };
+		75E9B54B2C04D6D6003788F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		75E9B54D2C04D6D6003788F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		75E9B5512C04D6D6003788F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		75E9B5452C04D6D6003788F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		75E9B53C2C04D6D6003788F1 = {
+			isa = PBXGroup;
+			children = (
+				75E9B5492C04D6D6003788F1 /* CalorieAIAppApp.swift */,
+				75E9B54B2C04D6D6003788F1 /* ContentView.swift */,
+				75E9B54D2C04D6D6003788F1 /* Assets.xcassets */,
+				75E9B5512C04D6D6003788F1 /* Info.plist */,
+			);
+			path = CalorieAIApp;
+			sourceTree = "<group>";
+		};
+		75E9B53B2C04D6D6003788F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				75E9B5482C04D6D6003788F1 /* CalorieAIApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		75E9B53A2C04D6D6003788F1 = {
+			isa = PBXGroup;
+			children = (
+				75E9B53C2C04D6D6003788F1 /* CalorieAIApp */,
+				75E9B53B2C04D6D6003788F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		75E9B5472C04D6D6003788F1 /* CalorieAIApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75E9B5552C04D6D6003788F1 /* Build configuration list for PBXNativeTarget "CalorieAIApp" */;
+			buildPhases = (
+				75E9B5442C04D6D6003788F1 /* Sources */,
+				75E9B5452C04D6D6003788F1 /* Frameworks */,
+				75E9B5462C04D6D6003788F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalorieAIApp;
+			productReference = 75E9B5482C04D6D6003788F1 /* CalorieAIApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		75E9B5392C04D6D6003788F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					75E9B5472C04D6D6003788F1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = 75E9B53F2C04D6D6003788F1 /* Build configuration list for PBXProject "CalorieAIApp" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			has} = 1;
+			mainGroup = 75E9B53A2C04D6D6003788F1;
+			productRefGroup = 75E9B53B2C04D6D6003788F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				75E9B5472C04D6D6003788F1 /* CalorieAIApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		75E9B5462C04D6D6003788F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E9B54E2C04D6D6003788F1 /* Assets.xcassets in Resources */,
+				75E9B5522C04D6D6003788F1 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		75E9B5442C04D6D6003788F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E9B54A2C04D6D6003788F1 /* CalorieAIAppApp.swift in Sources */,
+				75E9B54C2C04D6D6003788F1 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		75E9B5532C04D6D6003788F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CalorieAIApp/CalorieAIApp.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "CalorieAIApp/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.CalorieAIApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		75E9B5542C04D6D6003788F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CalorieAIApp/CalorieAIApp.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "CalorieAIApp/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.CalorieAIApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		75E9B53F2C04D6D6003788F1 /* Build configuration list for PBXProject "CalorieAIApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75E9B5532C04D6D6003788F1 /* Debug */,
+				75E9B5542C04D6D6003788F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75E9B5552C04D6D6003788F1 /* Build configuration list for PBXNativeTarget "CalorieAIApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75E9B5532C04D6D6003788F1 /* Debug */,
+				75E9B5542C04D6D6003788F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 75E9B5392C04D6D6003788F1 /* Project object */;
+}
